@@ -1,0 +1,32 @@
+version:  "3"
+
+services:
+  web:
+    container_name: web
+    build: .
+    env_file:
+      - .env
+    volumes:
+      - ./:/usr/src/glovo
+    entrypoint: ["sh", "/usr/src/glovo/entrypoint.sh"]
+    ports:
+      - "5000:5000"
+    depends_on:
+      - mysql
+
+  mysql:
+    container_name: mysql
+    image: mysql:5.7
+    restart: always
+    environment:
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_PASSWORD}
+    volumes:
+      - mysql-data:/var/lib/mysql
+    ports:
+      - "3306:3306"
+
+volumes:
+  mysql-data:
