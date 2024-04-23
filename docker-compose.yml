@@ -9,5 +9,6 @@ services:
     volumes:
       - ./:/usr/src/glovo
     entrypoint: ["sh", "/usr/src/glovo/entrypoint.sh"]
-    network_mode: "host"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
 
