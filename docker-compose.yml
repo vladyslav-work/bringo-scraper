@@ -9,7 +9,5 @@ services:
     volumes:
       - ./:/usr/src/glovo
     entrypoint: ["sh", "/usr/src/glovo/entrypoint.sh"]
-    ports:
-      - "5000:5000"
     network_mode: "host"
 
