@@ -1,0 +1,6 @@
+python-dotenv
+selenium
+selenium-wire
+beautifulsoup4
+requests
+mysql-connector-python

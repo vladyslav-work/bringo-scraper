@@ -1,0 +1,5 @@
+results/*
+env
+.env
+proxies.txt
+__pycache__
