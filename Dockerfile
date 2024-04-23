@@ -16,7 +16,7 @@ RUN apt-get update -y \
 # RUN apt-get install -y google-chrome-stable
 RUN wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 #run this command to install Chrome using the offline installer:
-RUN apt-get install ./google-chrome-stable_current_amd64.deb
+RUN apt-get install -y ./google-chrome-stable_current_amd64.deb
 RUN apt-get -f install
 
 # install chromedriver
