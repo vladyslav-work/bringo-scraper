@@ -299,8 +299,10 @@ class GlovoScraper:
     
         options = Options()  # Initialize browser options
         if os.getenv("ENV") != "dev":
-            options.add_argument("headless")  # Enable headless mode if not in development environment
+            options.add_argument("--headless")  # Enable headless mode if not in development environment
         options.add_argument("--disable-gpu")
+        options.add_argument('--no-sandbox')  # Bypass OS security model.
+        options.add_argument('--disable-dev-shm-usage')  # Overcome limited resource problems.
         options.add_argument("--enable-features=SameSiteByDefaultCookies,CookiesWithoutSameSiteMustBeSecure")
     
         proxies = self.__get_proxy()  # Retrieve proxy configuration
