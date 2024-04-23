@@ -18,7 +18,7 @@ RUN apt-get install -y google-chrome-stable
 # install chromedriver
 RUN apt-get install -yqq unzip
 RUN wget -O /tmp/chromedriver.zip https://storage.googleapis.com/chrome-for-testing-public/124.0.6367.60/linux64/chrome-linux64.zip
-RUN unzip /tmp/chromedriver.zip chromedriver -d /usr/local/bin/
+RUN unzip /tmp/chromedriver.zip -d /usr/local/bin/
 
 # Set up project directory
 WORKDIR /usr/src/glovo
