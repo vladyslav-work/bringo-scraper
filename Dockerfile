@@ -10,15 +10,28 @@ RUN apt-get update -y \
     && apt-get install -y python3-dev libproj-dev pkg-config build-essential wget unzip
 
 # install google chrome
-RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -
-RUN sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list'
-RUN apt-get -y update
+# RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -
+# RUN sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list'
+# RUN apt-get -y update
 RUN apt-get install -y google-chrome-stable
+RUN wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+#run this command to install Chrome using the offline installer:
+RUN apt install ./google-chrome-stable_current_amd64.deb
+RUN apt -f install
 
 # install chromedriver
-RUN apt-get install -yqq unzip
-RUN wget -O /tmp/chromedriver.zip https://storage.googleapis.com/chrome-for-testing-public/124.0.6367.60/linux64/chrome-linux64.zip
-RUN unzip /tmp/chromedriver.zip -d /usr/local/bin/
+# RUN apt-get install -yqq unzip
+# RUN wget -O /tmp/chromedriver.zip https://storage.googleapis.com/chrome-for-testing-public/124.0.6367.60/linux64/chrome-linux64.zip
+# RUN unzip /tmp/chromedriver.zip -d /usr/local/bin/
+
+RUN wget https://storage.googleapis.com/chrome-for-testing-public/124.0.6367.60/linux64/chrome-linux64.zip
+#Now install unzip command
+RUN apt install unzip
+#unzip the chromedriver now
+RUN unzip chromedriver_linux64.zip
+#move the chromedriver to /usr/bin/chromedriver
+RUN mv chromedriver /usr/bin/chromedriver
+RUN chown root:root /usr/bin/chromedriver
 
 # Set up project directory
 WORKDIR /usr/src/glovo
