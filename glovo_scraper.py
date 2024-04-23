@@ -74,13 +74,6 @@ class GlovoScraper:
         self.excluding = excluding_city_names  # Store the list of city names to exclude in scraping
         self.proxy_list = proxies  # Initialize the list of proxies
 
-        # Create a folder for storing CSV files if it doesn't exist
-        if not os.path.exists(self.folder_name):
-            os.makedirs(self.folder_name)
-            print(f"Folder '{self.folder_name}' created successfully.")
-        else:
-            print(f"Folder '{self.folder_name}' already exists.")
-
         # Connect to the database, retry after 30s if connection fails
         while True:
             try:

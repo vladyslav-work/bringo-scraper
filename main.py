@@ -5,6 +5,14 @@ import time
 def scrape_glovo():
 
     folder_path = "results"
+
+    # Create a folder for storing CSV files if it doesn't exist
+    if not os.path.exists(folder_path):
+        os.makedirs(folder_path)
+        print(f"Folder '{folder_path}' created successfully.")
+    else:
+        print(f"Folder '{folder_path}' already exists.")
+
     excluding_cities = [os.path.splitext(f)[0] for f in os.listdir(folder_path) if os.path.isfile(os.path.join(folder_path, f))]
 
     print(excluding_cities)

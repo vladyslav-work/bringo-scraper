@@ -4,13 +4,10 @@ FROM python:3
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 
-RUN apt-get update \
-    && apt-get install netcat -y
-RUN apt-get upgrade -y && apt-get install python3-dev musl-dev -y
-
-# -- Update system
-RUN apt-get update
-RUN apt-get install binutils libproj-dev gdal-bin -y
+# Install system dependencies
+RUN apt-get update -y \
+    && apt-get upgrade -y \
+    && apt-get install -y python3-dev libproj-dev pkg-config build-essential wget unzip
 
 # install google chrome
 RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -
@@ -23,16 +20,12 @@ RUN apt-get install -yqq unzip
 RUN wget -O /tmp/chromedriver.zip http://chromedriver.storage.googleapis.com/`curl -sS chromedriver.storage.googleapis.com/LATEST_RELEASE`/chromedriver_linux64.zip
 RUN unzip /tmp/chromedriver.zip chromedriver -d /usr/local/bin/
 
-# copy project
+# Set up project directory
 WORKDIR /usr/src/glovo
+
+# Copy project files
 COPY . .
 
-# setup virtual environment
-RUN python3 venv -v myenv
-RUN source myenv/bin/activate
-
-# install neccesary packages
-RUN apt-get install python3-dev pkg-config libmysqlclient-dev build-essential
-
-# install python modules
-RUN pip install -r requirements.txt
+# Install Python dependencies
+RUN pip install --upgrade pip \
+    && pip install -r requirements.txt
