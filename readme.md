@@ -1,42 +1,61 @@
+
 # Glovo Scraping Project
 
-## Preparation for Running the Project
+## Introduction
 
-Before running the project, ensure you have added the necessary `.env` and `proxies.txt` (optional) files.
+This project is designed to scrape the Glovo website for data collection purposes. The scraper automates the process of extracting information and storing it in a MySQL database for further analysis.
 
-### .env File
+## Prerequisites
 
-Create a `.env` file with the following format:
+Before setting up the project, please ensure you have the following prerequisites ready:
+- Docker installed on your system
+- A MySQL database accessible to store the scraped data
+
+## Configuration
+
+### 1. Environment Setup
+
+You need to configure environment variables for the application to connect with your database. For this purpose, create a `.env` file in the root directory of the project with the following content:
 
 ```plaintext
-MYSQL_USER = "username" # e.g. "root"
-MYSQL_PASSWORD = "password" # e.g. ""
-MYSQL_HOST = "database_host" # e.g. "127.0.0.1"
-MYSQL_DATABASE = "database_name" # e.g. "glovo"
+MYSQL_USER="username"            # Replace with your MySQL username, e.g., "root"
+MYSQL_PASSWORD="password"        # Replace with your MySQL password
+MYSQL_HOST="database_host"       # Replace with your MySQL host, e.g., "127.0.0.1"
+MYSQL_DATABASE="database_name"   # Replace with your MySQL database name, e.g., "glovo"
 ```
 
-### proxies.txt
+_Note: Don't include spaces around the "=" sign._
 
-The `proxies.txt` file is optional but recommended to prevent IP blocking by the Glovo site. An example format is as follows:
+### 2. Proxy Configuration (Optional)
+
+To prevent IP blocking by the target site, it's recommended to use proxies. If you have proxy servers available, list them in the `proxies.txt` file. Each line should contain one proxy in the following format:
 
 ```plaintext
-http://poxy_username:proxy_password@proxy_ip_1:proxy_port
-http://poxy_username:proxy_password@proxy_ip_2:proxy_port
-http://poxy_username:proxy_password@proxy_ip_3:proxy_port
+http://proxy_username:proxy_password@proxy_ip_1:proxy_port
+http://proxy_username:proxy_password@proxy_ip_2:proxy_port
+http://proxy_username:proxy_password@proxy_ip_3:proxy_port
 ...
 ```
 
-## Running the Project
+Replace `proxy_username`, `proxy_password`, `proxy_ip_1`, `proxy_port`, etc., with your actual proxy details.
 
-To run the project, execute the following commands in your terminal:
+## Installation
+
+Docker must be installed to run this project. Download and install Docker from [the official Docker website](https://www.docker.com/get-started) if you haven't already.
+
+## Usage
+
+After setting up the configuration files, you can proceed with running the project using Docker Compose. Execute the following commands in your terminal:
 
 ```bash
-docker compose build
-docker compose up -d
+sudo docker-compose build
+sudo docker-compose up -d
 ```
 
-If an error occurs during scraping, it will automatically restart after 30 seconds. Upon successful completion, the scraping process will restart daily.
+The scraper is set to restart automatically in case of errors after a 30-second delay. It will also auto-restart daily upon successful completion of its scraping tasks.
 
-All logs are stored in `output.txt`, allowing you to monitor the project's status.
+## Logs and Results
 
-The results of the scraping can be found in CSV files within the `results` folder and in the `products` table within your database.
+The application generates logs that are captured in the `output.txt` file. This allows you to check the progress and status of the scraping process.
+
+Scraped data is stored both as CSV files located in the `results` folder and in the `products` table within your specified MySQL database.
