@@ -1,41 +1,14 @@
 # Glovo Scraping Project
 
-## Environment For the Project
+## Preparation for Running the Project
 
-### Required tools
+Before running the project, ensure you have added the necessary `.env` and `proxies.txt` (optional) files.
 
-- python 3.10
-- Chrome 123.x
-- Chrome driver 123.x  
+### .env File
 
-unzip chrome driver zip file and paste all files in `C:/windows`
+Create a `.env` file with the following format:
 
-### Create virtual environment
-
-In the project, open the terminal
-
-- Install `virtualenv` if it's not already installed:
-```bash
-pip install virtualenv
-```
-- Create a virtual environment
-```bash
-python -m venv myenv
-```
-- Activate the virtual environment:
-```bash
-myenv\Scripts\activate
-```
-- Install required modules
-```bash
-pip install -r requirements.txt
-```
-
-## Preparation for Run
-
-### .env file
-
-```
+```plaintext
 MYSQL_USER = "username" # e.g. "root"
 MYSQL_PASSWORD = "password" # e.g. ""
 MYSQL_HOST = "database_host" # e.g. "127.0.0.1"
@@ -44,21 +17,26 @@ MYSQL_DATABASE = "database_name" # e.g. "glovo"
 
 ### proxies.txt
 
-This file is needed to avoid blocking your ip address by glovo site  
-For example:
-```
+The `proxies.txt` file is optional but recommended to prevent IP blocking by the Glovo site. An example format is as follows:
+
+```plaintext
 http://poxy_username:proxy_password@proxy_ip_1:proxy_port
 http://poxy_username:proxy_password@proxy_ip_2:proxy_port
 http://poxy_username:proxy_password@proxy_ip_3:proxy_port
 ...
 ```
 
-## Run the project
-On the terminal:
-```cmd
-py main.py
-```
-If an error occurs, scraping will start again after 30 seconds
-If the scraping finished successfully, it will restart after a day
+## Running the Project
 
-You can see csv files in `results` folder and products in the table `products` of your database
+To run the project, execute the following commands in your terminal:
+
+```bash
+docker compose build
+docker compose up -d
+```
+
+If an error occurs during scraping, it will automatically restart after 30 seconds. Upon successful completion, the scraping process will restart daily.
+
+All logs are stored in `output.txt`, allowing you to monitor the project's status.
+
+The results of the scraping can be found in CSV files within the `results` folder and in the `products` table within your database.
