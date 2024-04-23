@@ -1,3 +1,3 @@
 #! /bin/bash
 
-python3 main.py
+py main.py >> output.txt 2>&1
