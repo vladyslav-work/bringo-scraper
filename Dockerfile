@@ -26,8 +26,8 @@ RUN apt-get -f install
 
 RUN apt-get update && apt-get install -yqq unzip
 RUN wget https://storage.googleapis.com/chrome-for-testing-public/124.0.6367.60/linux64/chrome-linux64.zip
-RUN unzip chromedriver_linux64.zip
-RUN mv chromedriver /usr/bin/chromedriver
+RUN unzip chrome-linux64.zip
+RUN mv chrome-linux64 /usr/bin/chromedriver
 RUN chown root:root /usr/bin/chromedriver
 
 # Set up project directory
