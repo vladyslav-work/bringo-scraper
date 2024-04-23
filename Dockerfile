@@ -16,20 +16,17 @@ RUN apt-get update -y \
 # RUN apt-get install -y google-chrome-stable
 RUN wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 #run this command to install Chrome using the offline installer:
-RUN apt install ./google-chrome-stable_current_amd64.deb
-RUN apt -f install
+RUN apt-get install ./google-chrome-stable_current_amd64.deb
+RUN apt-get -f install
 
 # install chromedriver
 # RUN apt-get install -yqq unzip
 # RUN wget -O /tmp/chromedriver.zip https://storage.googleapis.com/chrome-for-testing-public/124.0.6367.60/linux64/chrome-linux64.zip
 # RUN unzip /tmp/chromedriver.zip -d /usr/local/bin/
 
+RUN apt-get update && apt-get install -yqq unzip
 RUN wget https://storage.googleapis.com/chrome-for-testing-public/124.0.6367.60/linux64/chrome-linux64.zip
-#Now install unzip command
-RUN apt install unzip
-#unzip the chromedriver now
 RUN unzip chromedriver_linux64.zip
-#move the chromedriver to /usr/bin/chromedriver
 RUN mv chromedriver /usr/bin/chromedriver
 RUN chown root:root /usr/bin/chromedriver
 
