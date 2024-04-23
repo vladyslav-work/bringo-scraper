@@ -3,7 +3,7 @@
 
 ## Introduction
 
-This project is designed to scrape the Glovo website for data collection purposes. The scraper automates the process of extracting information and storing it in a MySQL database for further analysis.
+This project is designed to scrape the Glovo website for products collection purposes. The scraper automates the process of extracting information and storing it in both a MySQL database and CSV files on the file system.
 
 ## Prerequisites
 
