@@ -2,12 +2,12 @@ version:  "3"
 
 services:
   scrapper:
-    container_name: scrapper
+    container_name: bringo
     build: .
     env_file:
       - .env
     volumes:
-      - ./:/usr/src/glovo
+      - ./:/usr/src/bringo
     entrypoint: ["sh", "/usr/src/glovo/entrypoint.sh"]
     network_mode: "host"
 

@@ -1,5 +1,7 @@
 results/*
 env
+myenv
+results
 .env
 proxies.txt
 __pycache__

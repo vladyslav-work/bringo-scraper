@@ -1,3 +1,3 @@
 #! /bin/bash
 
-python main.py >> output.txt 2>&1
+python bringo.py >> output.txt 2>&1
